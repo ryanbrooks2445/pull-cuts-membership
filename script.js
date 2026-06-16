@@ -1,60 +1,12 @@
 const FORMSUBMIT_AJAX_ENDPOINT =
   "https://formsubmit.co/ajax/pullcuts1@gmail.com";
 
-const menuToggle = document.querySelector(".menu-toggle");
-const nav = document.querySelector(".nav");
 const contactForm = document.getElementById("contact-form");
 const formStatus = document.getElementById("form-status");
 const yearEl = document.getElementById("year");
 
 if (yearEl) {
   yearEl.textContent = String(new Date().getFullYear());
-}
-
-function setMenuOpen(isOpen) {
-  if (!menuToggle || !nav) {
-    return;
-  }
-
-  menuToggle.setAttribute("aria-expanded", String(isOpen));
-  menuToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
-  nav.classList.toggle("open", isOpen);
-}
-
-if (menuToggle && nav) {
-  menuToggle.addEventListener("click", () => {
-    const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
-    setMenuOpen(!isOpen);
-  });
-
-  nav.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      setMenuOpen(false);
-    });
-  });
-
-  document.addEventListener("click", (event) => {
-    if (menuToggle.getAttribute("aria-expanded") !== "true") {
-      return;
-    }
-
-    const target = event.target;
-    if (!(target instanceof Node)) {
-      return;
-    }
-
-    if (nav.contains(target) || menuToggle.contains(target)) {
-      return;
-    }
-
-    setMenuOpen(false);
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      setMenuOpen(false);
-    }
-  });
 }
 
 if (contactForm && formStatus) {
